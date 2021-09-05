@@ -1,0 +1,81 @@
+<header class="mb-5">
+  <div class="navbar navbar-expand-md fixed-top container border-bottom shadow-sm">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+      <h5 class="d-flex align-items-center mb-2 mb-lg-0 me-5">
+        <%= link_to 'Devise Bootstrap', root_path, class: 'bi ms-5 me-2 text-dark text-decoration-none' %>
+      </h5>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><small><strong><%= link_to 'Store', store_path, class: "nav-link px-2 link-dark me-5" %></strong></small></li>
+
+        <li><small><%= link_to 'iPhones',     phones_path,       class: "nav-link px-2 link-dark" %></small></li>
+        <li><small><%= link_to 'Generations', generations_path,  class: "nav-link px-2 link-dark" %></small></li>
+        <li><small><%= link_to 'Models',      models_path,       class: "nav-link px-2 link-dark" %></small></li>
+        <li><small><%= link_to 'Modules',     mods_path,         class: "nav-link px-2 link-dark" %></small></li>
+        <li><small><%= link_to 'Spare parts', spare_parts_path,  class: "nav-link px-2 link-dark" %></small></li>
+        <li><small><%= link_to 'Defects',     defects_path,      class: "nav-link px-2 link-dark" %></small></li>
+        <li><small><%= link_to 'Repair',      repairs_path,      class: "nav-link px-2 link-dark" %></small></li>
+
+        <li><small><%= link_to 'Home',        root_path,         class: "nav-link px-2 link-dark ms-5 text-muted" %></small></li>
+        <li><small><%= link_to 'Terms',       terms_path,        class: "nav-link px-2 link-dark text-muted" %></small></li>
+        <li><small><%= link_to 'Contacts',    contacts_path,     class: "nav-link px-2 link-dark text-muted me-5" %></small></li>
+      </ul>
+
+      <% if user_signed_in? %>
+
+        <% if current_order.order_items.size > 0 %>
+          <%= link_to cart_path do %>
+            <div class="fixed-right badge bg-success me-5 align-middle">
+              <%= "#{current_user.username}'s cart" %> <span class="badge bg-danger align-middle"><%= @order_items.count if @order_items.present? %></span>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to cart_path do %>
+            <div class="fixed-right badge bg-secondary me-5 align-middle">
+              <%= "#{current_user.username}'s cart" %> <span class="badge bg-danger align-middle">is empty</span>
+            </div>
+          <% end %>
+        <% end %>
+
+        <div class="dropdown text-end">
+          <a
+            href="#"
+            class="d-block link-dark text-decoration-none dropdown-toggle"
+            id="dropdownUser1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+
+            <%= user_avatar(current_user, 40) %>
+          </a>
+
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+            <li><%= link_to 'Posts',       posts_path,       class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'New Post',    new_post_path,    class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'Articles',    articles_path,    class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'New article', new_article_path, class: 'dropdown-item px-5' %></li>
+
+            <% @universities.each do |university| %>
+              <li><%= link_to university.title, university_path(university), class: 'dropdown-item px-5' %></li>
+            <% end %>
+
+            <li><%= link_to 'Settings',        edit_user_registration_path,  class: "dropdown-item px-5" %></li>
+
+            <li><hr class="dropdown-divider"></li>
+
+            <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "dropdown-item text-danger p-5" %></li>
+          </ul>
+
+        <% else %>
+
+          <ul class="nav">
+            <li class="nav-item"><%= link_to 'Sign in', new_user_session_path, class: "nav-link link-dark px-2" %></li>
+            <li class="nav-item"><%= link_to 'Sign up', new_user_registration_path, class: "nav-link link-dark px-2" %></li>
+          </ul>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</header>
