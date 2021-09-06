@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
 
-  resources :chapters
-  resources :cources
+  resources :answers
   devise_for :users
 
   root to: 'pages#home'
 
-  resources :products
-  resources :universities
   resources :categories
+  resources :products
+  
+  resources :universities
+  resources :quizzes
+  resources :quiz_questions
+
+  resources :cources
+  resources :chapters
 
   resources :posts
   resources :articles

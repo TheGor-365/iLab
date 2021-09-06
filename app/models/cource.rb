@@ -11,5 +11,6 @@ class Cource < ApplicationRecord
   belongs_to :generation
 
   has_many :chapters
+  has_many :quizzes
 
 end
