@@ -8,12 +8,12 @@ default: &default
 
 development:
   <<: *default
-  database: devise_bootstrap
+  database: ilab
 
 test:
   <<: *default
-  database: devise_bootstrap_test
+  database: ilab_test
 
 production:
   <<: *default
-  database: devise_bootstrap_production
+  database: ilab_production

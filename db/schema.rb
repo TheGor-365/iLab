@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_25_101254) do
+ActiveRecord::Schema.define(version: 2021_09_06_174135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(version: 2021_08_25_101254) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "quiz_question_id", null: false
+    t.text "content"
+    t.boolean "correct", default: false
+    t.string "avatar", default: ""
+    t.string "images", default: [], array: true
+    t.string "videos", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_question_id"], name: "index_answers_on_quiz_question_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -213,6 +225,33 @@ ActiveRecord::Schema.define(version: 2021_08_25_101254) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  create_table "quiz_questions", force: :cascade do |t|
+    t.text "content"
+    t.string "avatar", default: ""
+    t.string "images", default: [], array: true
+    t.string "videos", default: [], array: true
+    t.bigint "quiz_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "avatar", default: ""
+    t.string "images", default: [], array: true
+    t.string "videos", default: [], array: true
+    t.bigint "cource_id", null: false
+    t.bigint "chapter_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "passing_score", default: 70
+    t.integer "num_questions_to_show", default: 10
+    t.index ["chapter_id"], name: "index_quizzes_on_chapter_id"
+    t.index ["cource_id"], name: "index_quizzes_on_cource_id"
+  end
+
   create_table "repairs", force: :cascade do |t|
     t.string "generation_id"
     t.string "phone_id"
@@ -277,6 +316,7 @@ ActiveRecord::Schema.define(version: 2021_08_25_101254) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answers", "quiz_questions"
   add_foreign_key "chapters", "cources"
   add_foreign_key "cources", "categories"
   add_foreign_key "cources", "generations"
@@ -285,4 +325,7 @@ ActiveRecord::Schema.define(version: 2021_08_25_101254) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "products", "categories"
+  add_foreign_key "quiz_questions", "quizzes"
+  add_foreign_key "quizzes", "chapters"
+  add_foreign_key "quizzes", "cources"
 end
