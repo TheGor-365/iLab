@@ -102,6 +102,10 @@ ul .dropdown-menu {
   z-index: 1030;
 }
 
+.dropdown-menu {
+  border: none !important;
+}
+
 .row {
   --bs-gutter-x: 0 !important;
 }

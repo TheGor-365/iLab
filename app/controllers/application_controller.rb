@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: [
       :login,
       :username,
+      :repairman,
+      :teacher,
+      :student,
       :email,
       :password,
       :avatar,
@@ -33,6 +36,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: [
       :login,
       :username,
+      :repairman,
+      :teacher,
+      :student,
       :email,
       :password,
       :avatar,

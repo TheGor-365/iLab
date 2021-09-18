@@ -4,11 +4,12 @@
 
 
 User.create([
-  { username: 'sarah',    email: 'sarah@example.com',     password: 'Password1' },
-  { username: 'emily',    email: 'emily@example.com',     password: 'Password1' },
-  { username: 'melanie',  email: 'melanie@example.com',   password: 'Password1' },
-  { username: 'caroline', email: 'caroline@example.com',  password: 'Password1' },
-  { username: 'bridget',  email: 'bridget@example.com',   password: 'Password1' }
+  { username: 'sarah',    admin: true,  author: true,  repairman: true,  teacher: true,  student: true,  customer: true, email: 'sarah@example.com',    password: 'Password1' },
+  { username: 'emily',    admin: false, author: false, repairman: false, teacher: false, student: true,  customer: true, email: 'emily@example.com',    password: 'Password1' },
+  { username: 'melanie',  admin: false, author: true,  repairman: false, teacher: false, student: true,  customer: true, email: 'melanie@example.com',  password: 'Password1' },
+  { username: 'caroline', admin: false, author: true,  repairman: true,  teacher: false, student: false, customer: true, email: 'caroline@example.com', password: 'Password1' },
+  { username: 'bridget',  admin: false, author: true,  repairman: false, teacher: true,  student: false, customer: true, email: 'bridget@example.com',  password: 'Password1' },
+  { username: 'jane',     admin: false, author: false, repairman: false, teacher: false, student: false, customer: true, email: 'bridget@example.com',  password: 'Password1' }
 ])
 
 
