@@ -9,9 +9,13 @@ class PostsController < ApplicationController
   def show
     @post.views += 1
     @post.save
+
+    @user = current_user
   end
 
   def new
+    @user = current_user
+
     @post = Post.new
   end
 
@@ -19,6 +23,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id if user_signed_in?
 
     respond_to do |format|
       if @post.save
@@ -55,6 +60,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
+      :user_id,
       :title,
       :views,
       :body,

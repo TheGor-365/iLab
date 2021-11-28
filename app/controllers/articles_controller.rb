@@ -6,15 +6,21 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
-  def show; end
+  def show
+    @user = current_user
+  end
+
   def edit; end
 
   def new
+    @user = current_user
+
     @article = Article.new
   end
 
   def create
     @article = Article.new(article_params)
+    @article.user_id = current_user.id if user_signed_in?
 
     respond_to do |format|
       if @article.save
@@ -50,6 +56,7 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(
+      :user_id,
       :name,
       :content,
       :avatar,

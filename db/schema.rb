@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_18_163042) do
+ActiveRecord::Schema.define(version: 2021_10_02_124552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
 
   create_table "answers", force: :cascade do |t|
     t.bigint "quiz_question_id", null: false
+    t.bigint "user_id", null: false
     t.text "content"
     t.boolean "correct", default: false
     t.string "avatar", default: ""
@@ -63,15 +64,18 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["quiz_question_id"], name: "index_answers_on_quiz_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "articles", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "name"
     t.string "avatar", default: ""
     t.string "images", default: [], array: true
     t.string "videos", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -86,11 +90,11 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
   end
 
   create_table "chapters", force: :cascade do |t|
+    t.bigint "cource_id", null: false
     t.string "title"
     t.string "avatar", default: ""
     t.string "images", default: [], array: true
     t.string "videos", default: [], array: true
-    t.bigint "cource_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cource_id"], name: "index_chapters_on_cource_id"
@@ -148,8 +152,8 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
   end
 
   create_table "models", force: :cascade do |t|
-    t.string "generation_id"
-    t.string "phone_id"
+    t.integer "generation_id"
+    t.integer "phone_id"
     t.string "title"
     t.string "avatar"
     t.string "images", default: [], array: true
@@ -159,9 +163,9 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
   end
 
   create_table "mods", force: :cascade do |t|
-    t.string "generation_id"
-    t.string "phone_id"
-    t.string "model_id"
+    t.integer "generation_id"
+    t.integer "phone_id"
+    t.integer "model_id"
     t.string "name"
     t.string "avatar"
     t.string "manufacturers", default: [], array: true
@@ -172,9 +176,9 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "quantity"
     t.bigint "product_id", null: false
     t.bigint "order_id", null: false
+    t.integer "quantity"
     t.decimal "total"
     t.decimal "unit_price"
     t.datetime "created_at", precision: 6, null: false
@@ -190,8 +194,20 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "owned_gadgets", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "phone_id", null: false
+    t.string "avatar", default: ""
+    t.string "images", default: [], array: true
+    t.string "videos", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["phone_id"], name: "index_owned_gadgets_on_phone_id"
+    t.index ["user_id"], name: "index_owned_gadgets_on_user_id"
+  end
+
   create_table "phones", force: :cascade do |t|
-    t.string "generation_id"
+    t.integer "generation_id"
     t.string "model_title"
     t.string "model_overview"
     t.string "avatar"
@@ -202,6 +218,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "title"
     t.integer "views", default: 0
     t.string "avatar", default: ""
@@ -209,6 +226,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
     t.string "videos", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -253,9 +271,9 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
   end
 
   create_table "repairs", force: :cascade do |t|
-    t.string "generation_id"
-    t.string "phone_id"
-    t.string "defect_id"
+    t.integer "generation_id"
+    t.integer "phone_id"
+    t.integer "defect_id"
     t.string "title"
     t.string "description"
     t.string "overview"
@@ -269,8 +287,8 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
   end
 
   create_table "spare_parts", force: :cascade do |t|
-    t.string "generation_id"
-    t.string "phone_id"
+    t.integer "generation_id"
+    t.integer "phone_id"
     t.integer "mod_id"
     t.string "name"
     t.string "manufacturer"
@@ -315,6 +333,12 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
     t.boolean "teacher", default: false
     t.boolean "student", default: false
     t.boolean "customer", default: true
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "borned"
+    t.datetime "birthday"
+    t.text "images", default: [], array: true
+    t.text "videos", default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
@@ -323,6 +347,7 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "quiz_questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "chapters", "cources"
   add_foreign_key "cources", "categories"
   add_foreign_key "cources", "generations"
@@ -330,6 +355,9 @@ ActiveRecord::Schema.define(version: 2021_09_18_163042) do
   add_foreign_key "cources", "universities"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "owned_gadgets", "phones"
+  add_foreign_key "owned_gadgets", "users"
+  add_foreign_key "posts", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "quizzes", "chapters"

@@ -5,9 +5,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
 
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader  :avatar, AvatarUploader
+  mount_uploaders :images, ImageUploader
+  mount_uploaders :videos, VideosUploader
+
+  has_many :posts
+  has_many :articles
+  has_many :answers
+  has_many :owned_gadgets
+  has_many :phones, through: :owned_gadgets
+
+  has_one :profile
 
   attr_writer :login
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   def login
     @login || self.username || self.email
@@ -31,5 +45,4 @@ class User < ApplicationRecord
       errors.add(:username, :invalid)
     end
   end
-
 end

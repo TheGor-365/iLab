@@ -1,7 +1,7 @@
 class CreatePhones < ActiveRecord::Migration[6.1]
   def change
     create_table :phones do |t|
-      t.string :generation_id
+      t.integer :generation_id
       t.string :model_title
       t.string :model_overview
       t.string :avatar

@@ -1,5 +1,5 @@
 <header class="mb-5">
-  <div class="navbar navbar-expand-md fixed-top container border-bottom shadow-sm">
+  <div class="navbar navbar-expand-lg fixed-top border-bottom shadow-sm">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
       <h5 class="d-flex align-items-center mb-2 mb-lg-0 me-5">
@@ -7,36 +7,41 @@
       </h5>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><small><strong><%= link_to 'Store', store_path, class: "nav-link px-2 link-dark me-5" %></strong></small></li>
 
-        <li><small><%= link_to 'iPhones',     phones_path,       class: "nav-link px-2 link-dark" %></small></li>
-        <li><small><%= link_to 'Generations', generations_path,  class: "nav-link px-2 link-dark" %></small></li>
-        <li><small><%= link_to 'Models',      models_path,       class: "nav-link px-2 link-dark" %></small></li>
-        <li><small><%= link_to 'Modules',     mods_path,         class: "nav-link px-2 link-dark" %></small></li>
-        <li><small><%= link_to 'Spare parts', spare_parts_path,  class: "nav-link px-2 link-dark" %></small></li>
-        <li><small><%= link_to 'Defects',     defects_path,      class: "nav-link px-2 link-dark" %></small></li>
-        <li><small><%= link_to 'Repair',      repairs_path,      class: "nav-link px-2 link-dark" %></small></li>
+        <li>
+          <small>
+            <strong>
+              <%=      link_to 'Store',       store_path,        class: "nav-link px-2 link-dark me-5 text-success" %>
+            </strong>
+          </small>
+        </li>
+
+        <li><small><%= link_to 'Generations', generations_path,  class: "nav-link px-2 link-dark"                 %></small></li>
+        <li><small><%= link_to 'iPhones',     phones_path,       class: "nav-link px-2 link-dark"                 %></small></li>
+        <li><small><%= link_to 'Models',      models_path,       class: "nav-link px-2 link-dark"                 %></small></li>
+        <li><small><%= link_to 'Modules',     mods_path,         class: "nav-link px-2 link-dark"                 %></small></li>
+        <li><small><%= link_to 'Spare parts', spare_parts_path,  class: "nav-link px-2 link-dark"                 %></small></li>
+        <li><small><%= link_to 'Defects',     defects_path,      class: "nav-link px-2 link-dark"                 %></small></li>
+        <li><small><%= link_to 'Repair',      repairs_path,      class: "nav-link px-2 link-dark"                 %></small></li>
 
         <li><small><%= link_to 'Home',        root_path,         class: "nav-link px-2 link-dark ms-5 text-muted" %></small></li>
-        <li><small><%= link_to 'Terms',       terms_path,        class: "nav-link px-2 link-dark text-muted" %></small></li>
+        <li><small><%= link_to 'Terms',       terms_path,        class: "nav-link px-2 link-dark text-muted"      %></small></li>
         <li><small><%= link_to 'Contacts',    contacts_path,     class: "nav-link px-2 link-dark text-muted me-5" %></small></li>
       </ul>
 
       <% if user_signed_in? %>
 
-        <% if current_order.order_items.size > 0 %>
-          <%= link_to cart_path do %>
-            <div class="fixed-right badge bg-success me-5 align-middle">
+        <div class="fixed-right badge bg-white me-3 shadow-sm p-2">
+          <% if current_order.order_items.size > 0 %>
+            <%= link_to cart_path, class: 'text-dark align-middle text-decoration-none' do %>
               <%= "#{current_user.username}'s cart" %> <span class="badge bg-danger align-middle"><%= @order_items.count if @order_items.present? %></span>
-            </div>
+            <% end %>
+          <% else %>
+            <%= link_to cart_path, class: 'text-muted align-middle text-decoration-none' do %>
+              <span class="align-middle"><%= "#{current_user.username}'s cart" %></span> <span class="badge bg-info text-dark align-middle">is empty</span>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to cart_path do %>
-            <div class="fixed-right badge bg-secondary me-5 align-middle">
-              <%= "#{current_user.username}'s cart" %> <span class="badge bg-danger align-middle">is empty</span>
-            </div>
-          <% end %>
-        <% end %>
+        </div>
 
         <div class="dropdown text-end">
           <a
@@ -50,16 +55,20 @@
           </a>
 
           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1" style="">
-            <li><%= link_to 'Posts',       posts_path,       class: 'dropdown-item px-5' %></li>
-            <li><%= link_to 'New Post',    new_post_path,    class: 'dropdown-item px-5' %></li>
-            <li><%= link_to 'Articles',    articles_path,    class: 'dropdown-item px-5' %></li>
-            <li><%= link_to 'New article', new_article_path, class: 'dropdown-item px-5' %></li>
+
+            <li><%= link_to 'Profile',     account_path(current_user.username), class: "dropdown-item px-5" %></li>
+            <li><%= link_to 'Posts',       posts_path,                          class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'New Post',    new_post_path,                       class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'Articles',    articles_path,                       class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'New article', new_article_path,                    class: 'dropdown-item px-5' %></li>
 
             <% @universities.each do |university| %>
-              <li><%= link_to university.title, university_path(university), class: 'dropdown-item px-5' %></li>
+              <li>
+                <%= link_to university.title, university_path(university), class: 'dropdown-item px-5' %>
+              </li>
             <% end %>
 
-            <li><%= link_to 'Settings',        edit_user_registration_path,  class: "dropdown-item px-5" %></li>
+            <li><%= link_to 'Settings', edit_user_registration_path,  class: "dropdown-item px-5" %></li>
 
             <li><hr class="dropdown-divider"></li>
 
@@ -69,10 +78,9 @@
         <% else %>
 
           <ul class="nav">
-            <li class="nav-item"><%= link_to 'Sign in', new_user_session_path, class: "nav-link link-dark px-2" %></li>
+            <li class="nav-item"><%= link_to 'Sign in', new_user_session_path,      class: "nav-link link-dark px-2" %></li>
             <li class="nav-item"><%= link_to 'Sign up', new_user_registration_path, class: "nav-link link-dark px-2" %></li>
           </ul>
-
         <% end %>
 
       </div>

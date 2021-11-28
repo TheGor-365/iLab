@@ -1,8 +1,8 @@
 class CreateSpareParts < ActiveRecord::Migration[6.1]
   def change
     create_table :spare_parts do |t|
-      t.string  :generation_id
-      t.string  :phone_id
+      t.integer  :generation_id
+      t.integer  :phone_id
       t.integer :mod_id
       t.string  :name
       t.string  :manufacturer

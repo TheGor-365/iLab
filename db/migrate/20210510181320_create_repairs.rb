@@ -1,9 +1,9 @@
 class CreateRepairs < ActiveRecord::Migration[6.1]
   def change
     create_table :repairs do |t|
-      t.string :generation_id
-      t.string :phone_id
-      t.string :defect_id
+      t.integer :generation_id
+      t.integer :phone_id
+      t.integer :defect_id
       t.string :title
       t.string :description
       t.string :overview

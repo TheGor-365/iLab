@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
 
   skip_before_action :verify_authenticity_token
 
-  #protect_from_forgery with: :exception
-
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :current_order
   before_action :set_order_items
@@ -36,6 +34,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: [
       :login,
       :username,
+      :first_name,
+      :last_name,
+      :owned_gadgets,
+      :borned,
+      :brithday,
       :repairman,
       :teacher,
       :student,
@@ -44,7 +47,9 @@ class ApplicationController < ActionController::Base
       :avatar,
       :avatar_cache,
       :password_confirmation,
-      :remember_me
+      :remember_me,
+      { images: [] },
+      { videos: [] }
     ]
   end
 
@@ -69,5 +74,4 @@ class ApplicationController < ActionController::Base
   def set_categories
     @categories = Category.all
   end
-
 end

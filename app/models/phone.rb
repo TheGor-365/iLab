@@ -7,8 +7,10 @@ class Phone < ApplicationRecord
   has_rich_text :model_overview
 
   belongs_to :generation
+  belongs_to :owned_gadget
+  belongs_to :user
 
-  has_one :model
+  has_one  :model
 
   has_many :defects
   has_many :repairs
