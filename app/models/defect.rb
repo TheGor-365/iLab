@@ -6,7 +6,8 @@ class Defect < ApplicationRecord
 
   has_rich_text :description
 
-  has_and_belongs_to_many :repair
+  has_many :repairs
+  has_many :mods
 
   has_and_belongs_to_many :phones
   has_and_belongs_to_many :generations

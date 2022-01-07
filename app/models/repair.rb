@@ -7,9 +7,11 @@ class Repair < ApplicationRecord
   has_rich_text :description
   has_rich_text :overview
 
+  has_many :mods
+  
   has_and_belongs_to_many :defects
+  has_and_belongs_to_many :phones
 
-  belongs_to :phone
   belongs_to :generation
 
 end

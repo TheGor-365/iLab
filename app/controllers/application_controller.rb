@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       :username,
       :first_name,
       :last_name,
-      :owned_gadgets,
+      {owned_gadgets: []},
       :borned,
       :brithday,
       :repairman,
@@ -49,7 +49,34 @@ class ApplicationController < ActionController::Base
       :password_confirmation,
       :remember_me,
       { images: [] },
-      { videos: [] }
+      { videos: [] },
+      phones_attributes: [
+        :generation_id,
+        :user_id,
+        :repair_id,
+        :model_title,
+        :model_overview,
+        :images_cache,
+        :avatar,
+        :avatar_cache,
+        { images: [] },
+        { videos: [] }
+      ],
+      makbooks_attributes: [
+        :title,
+        :diagonal,
+        :model,
+        :version,
+        :series,
+        :production_period,
+        :full_title,
+        :overview,
+        :images_cache,
+        :avatar,
+        :avatar_cache,
+        { images: [] },
+        { videos: [] }
+      ]
     ]
   end
 

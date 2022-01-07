@@ -6,25 +6,19 @@ class OwnedGadgetsController < ApplicationController
 
   def index
     @owned_gadgets = OwnedGadget.all
-    @owned_gadgets == @phones
   end
 
   def show
-    @owned_gadget == @phone
-    @owned_gadgets == @phones
-
     @user = current_user
   end
 
   def edit
-    @owned_gadget == @phone
-    @owned_gadgets == @phones
   end
 
   def new
-    @owned_gadget = OwnedGadget.new
-    @owned_gadget == @phone
     @user = current_user
+
+    @owned_gadget = OwnedGadget.new
   end
 
   def create
@@ -42,6 +36,7 @@ class OwnedGadgetsController < ApplicationController
 
   def update
     @user = current_user
+    @owned_gadget.user_id = current_user.id if user_signed_in?
 
     respond_to do |format|
       if @owned_gadget.update(owned_gadget_params)
@@ -82,7 +77,7 @@ class OwnedGadgetsController < ApplicationController
       :avatar,
       :avatar_cache,
       { images: [] },
-      { videos: [] }
+      { videos: [] },
     )
   end
 end

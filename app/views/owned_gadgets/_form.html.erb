@@ -31,7 +31,7 @@
 
   <div class="row p-5 shadow bg-white mb-5">
     <%= form.label :choose_your_owned_gadgets, class: 'mb-5' %>
-    <%= form.select(:phone_id, options_from_collection_for_select(Phone.all, :id, :model_title, (@user.owned_gadget.id if @user.owned_gadgets.present?)), {}, { class: 'form-control' }) %>
+    <%= form.select(:phone_id, options_from_collection_for_select(Phone.all, :id, :model_title, (@user.owned_gadgets.ids if @user.owned_gadgets.present?)), {}, { class: 'form-control' }) %>
   </div>
 
   <div class="row p-5 shadow bg-white mb-5">

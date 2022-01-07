@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_124552) do
+ActiveRecord::Schema.define(version: 2022_01_07_162944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,29 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "airpods", force: :cascade do |t|
+    t.string "title"
+    t.string "diagonal"
+    t.string "model"
+    t.string "version"
+    t.string "series"
+    t.datetime "production_period"
+    t.string "full_title"
+    t.text "overview"
+    t.string "avatar"
+    t.string "images", default: [], array: true
+    t.string "videos", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "airpods_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "airpod_id", null: false
+    t.index ["airpod_id", "user_id"], name: "index_airpods_users_on_airpod_id_and_user_id"
+    t.index ["user_id", "airpod_id"], name: "index_airpods_users_on_user_id_and_airpod_id"
+  end
+
   create_table "answers", force: :cascade do |t|
     t.bigint "quiz_question_id", null: false
     t.bigint "user_id", null: false
@@ -65,6 +88,29 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["quiz_question_id"], name: "index_answers_on_quiz_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "apple_watches", force: :cascade do |t|
+    t.string "title"
+    t.string "diagonal"
+    t.string "model"
+    t.string "version"
+    t.string "series"
+    t.datetime "production_period"
+    t.string "full_title"
+    t.text "overview"
+    t.string "avatar"
+    t.string "images", default: [], array: true
+    t.string "videos", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "apple_watches_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "apple_watch_id", null: false
+    t.index ["apple_watch_id", "user_id"], name: "index_apple_watches_users_on_apple_watch_id_and_user_id"
+    t.index ["user_id", "apple_watch_id"], name: "index_apple_watches_users_on_user_id_and_apple_watch_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -122,6 +168,10 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
   end
 
   create_table "defects", force: :cascade do |t|
+    t.integer "generation_id"
+    t.integer "phone_id"
+    t.integer "repair_id"
+    t.integer "mod_id"
     t.string "title"
     t.string "description"
     t.string "avatar"
@@ -130,6 +180,20 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
     t.string "videos", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "defects_mods", id: false, force: :cascade do |t|
+    t.bigint "defect_id", null: false
+    t.bigint "mod_id", null: false
+    t.index ["defect_id", "mod_id"], name: "index_defects_mods_on_defect_id_and_mod_id"
+    t.index ["mod_id", "defect_id"], name: "index_defects_mods_on_mod_id_and_defect_id"
+  end
+
+  create_table "defects_phones", id: false, force: :cascade do |t|
+    t.bigint "phone_id", null: false
+    t.bigint "defect_id", null: false
+    t.index ["defect_id", "phone_id"], name: "index_defects_phones_on_defect_id_and_phone_id"
+    t.index ["phone_id", "defect_id"], name: "index_defects_phones_on_phone_id_and_defect_id"
   end
 
   create_table "defects_repairs", id: false, force: :cascade do |t|
@@ -151,6 +215,75 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "imacs", force: :cascade do |t|
+    t.string "title"
+    t.string "diagonal"
+    t.string "model"
+    t.string "version"
+    t.string "series"
+    t.datetime "production_period"
+    t.string "full_title"
+    t.text "overview"
+    t.string "avatar"
+    t.string "images", default: [], array: true
+    t.string "videos", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "imacs_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "imac_id", null: false
+    t.index ["imac_id", "user_id"], name: "index_imacs_users_on_imac_id_and_user_id"
+    t.index ["user_id", "imac_id"], name: "index_imacs_users_on_user_id_and_imac_id"
+  end
+
+  create_table "ipads", force: :cascade do |t|
+    t.string "title"
+    t.string "diagonal"
+    t.string "model"
+    t.string "version"
+    t.string "series"
+    t.datetime "production_period"
+    t.string "full_title"
+    t.text "overview"
+    t.string "avatar"
+    t.string "images", default: [], array: true
+    t.string "videos", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ipads_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "ipad_id", null: false
+    t.index ["ipad_id", "user_id"], name: "index_ipads_users_on_ipad_id_and_user_id"
+    t.index ["user_id", "ipad_id"], name: "index_ipads_users_on_user_id_and_ipad_id"
+  end
+
+  create_table "makbooks", force: :cascade do |t|
+    t.string "title"
+    t.string "diagonal"
+    t.string "model"
+    t.string "version"
+    t.string "series"
+    t.datetime "production_period"
+    t.string "full_title"
+    t.text "overview"
+    t.string "avatar"
+    t.string "images", default: [], array: true
+    t.string "videos", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "makbooks_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "makbook_id", null: false
+    t.index ["makbook_id", "user_id"], name: "index_makbooks_users_on_makbook_id_and_user_id"
+    t.index ["user_id", "makbook_id"], name: "index_makbooks_users_on_user_id_and_makbook_id"
+  end
+
   create_table "models", force: :cascade do |t|
     t.integer "generation_id"
     t.integer "phone_id"
@@ -166,6 +299,8 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
     t.integer "generation_id"
     t.integer "phone_id"
     t.integer "model_id"
+    t.integer "defect_id"
+    t.integer "repair_id"
     t.string "name"
     t.string "avatar"
     t.string "manufacturers", default: [], array: true
@@ -173,6 +308,13 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
     t.string "videos", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "mods_repairs", id: false, force: :cascade do |t|
+    t.bigint "repair_id", null: false
+    t.bigint "mod_id", null: false
+    t.index ["mod_id", "repair_id"], name: "index_mods_repairs_on_mod_id_and_repair_id"
+    t.index ["repair_id", "mod_id"], name: "index_mods_repairs_on_repair_id_and_mod_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -196,18 +338,22 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
 
   create_table "owned_gadgets", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "phone_id", null: false
-    t.string "avatar", default: ""
+    t.string "avatar"
     t.string "images", default: [], array: true
     t.string "videos", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["phone_id"], name: "index_owned_gadgets_on_phone_id"
     t.index ["user_id"], name: "index_owned_gadgets_on_user_id"
   end
 
+  create_table "owned_gadgets_phones", id: false, force: :cascade do |t|
+    t.bigint "owned_gadget_id", null: false
+    t.bigint "phone_id", null: false
+    t.index ["owned_gadget_id", "phone_id"], name: "index_owned_gadgets_phones_on_owned_gadget_id_and_phone_id"
+    t.index ["phone_id", "owned_gadget_id"], name: "index_owned_gadgets_phones_on_phone_id_and_owned_gadget_id"
+  end
+
   create_table "phones", force: :cascade do |t|
-    t.integer "generation_id"
     t.string "model_title"
     t.string "model_overview"
     t.string "avatar"
@@ -215,6 +361,22 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
     t.string "videos", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "generation_id", null: false
+    t.index ["generation_id"], name: "index_phones_on_generation_id"
+  end
+
+  create_table "phones_repairs", id: false, force: :cascade do |t|
+    t.bigint "repair_id", null: false
+    t.bigint "phone_id", null: false
+    t.index ["phone_id", "repair_id"], name: "index_phones_repairs_on_phone_id_and_repair_id"
+    t.index ["repair_id", "phone_id"], name: "index_phones_repairs_on_repair_id_and_phone_id"
+  end
+
+  create_table "phones_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "phone_id", null: false
+    t.index ["phone_id", "user_id"], name: "index_phones_users_on_phone_id_and_user_id"
+    t.index ["user_id", "phone_id"], name: "index_phones_users_on_user_id_and_phone_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -244,24 +406,24 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
   end
 
   create_table "quiz_questions", force: :cascade do |t|
+    t.bigint "quiz_id", null: false
     t.text "content"
     t.string "avatar", default: ""
     t.string "images", default: [], array: true
     t.string "videos", default: [], array: true
-    t.bigint "quiz_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
+    t.bigint "cource_id", null: false
+    t.bigint "chapter_id", null: false
     t.string "name"
     t.text "description"
     t.string "avatar", default: ""
     t.string "images", default: [], array: true
     t.string "videos", default: [], array: true
-    t.bigint "cource_id", null: false
-    t.bigint "chapter_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "passing_score", default: 70
@@ -274,6 +436,7 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
     t.integer "generation_id"
     t.integer "phone_id"
     t.integer "defect_id"
+    t.integer "mod_id"
     t.string "title"
     t.string "description"
     t.string "overview"
@@ -355,8 +518,8 @@ ActiveRecord::Schema.define(version: 2021_10_02_124552) do
   add_foreign_key "cources", "universities"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
-  add_foreign_key "owned_gadgets", "phones"
   add_foreign_key "owned_gadgets", "users"
+  add_foreign_key "phones", "generations"
   add_foreign_key "posts", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "quiz_questions", "quizzes"

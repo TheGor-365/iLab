@@ -6,16 +6,17 @@ class Phone < ApplicationRecord
 
   has_rich_text :model_overview
 
+  has_and_belongs_to_many :owned_gadgets
+
   belongs_to :generation
-  belongs_to :owned_gadget
-  belongs_to :user
 
   has_one  :model
 
+  has_many :users
   has_many :defects
-  has_many :repairs
   has_many :mods
   has_many :spare_parts
   has_many :cources
+  has_many :repairs
 
 end

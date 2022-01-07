@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :apple_watches
+  resources :airpods
+  resources :ipads
+  resources :imacs
+  resources :makbooks
   devise_for :users
 
   root to: 'pages#home'
@@ -89,8 +94,8 @@ Rails.application.routes.draw do
   match 'cart',   to: 'cart#show',      via: [ :get, :post ]
   match 'store',  to: 'pages#store',    via: [ :get, :post ]
 
-  get  'profiles/:username',                to: 'profiles#profile',        as: 'account'
-  get  'profiles/:username/edit_profile',   to: 'profiles#edit_profile',   as: 'edit_account'
+  get   'profiles/:username',                to: 'profiles#profile',        as: 'account'
+  get   'profiles/:username/edit_profile',   to: 'profiles#edit_profile',   as: 'edit_account'
   patch 'profiles/:username',                to: 'profiles#update'
 
   get   'video_recordings',                  to: 'video_recordings#new',    as: 'video_recordings'

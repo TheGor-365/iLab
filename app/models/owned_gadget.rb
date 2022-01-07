@@ -6,6 +6,6 @@ class OwnedGadget < ApplicationRecord
 
   belongs_to :user
 
-  has_many :phones
+  has_and_belongs_to_many :phones
 
 end

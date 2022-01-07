@@ -35,12 +35,19 @@
         </span>
       </span>
       <% @user.owned_gadgets.each do |owned_gadget| %>
-        <%= owned_gadget %>
+        <% owned_gadget.phones.each do |owned_gadget_phone| %>
+          <%= owned_gadget_phone %>
+        <% end %>
       <% end %>
     </div>
 
     <div class="row p-5 shadow bg-white">
-      <span class="display-6 mb-3"><%= @user.owned_gadgets %>
+      <span class="display-6 mb-3"><%= @user.owned_gadgets %><br>
+        <% @user.owned_gadgets.each do |owned_gadget| %>
+          <% owned_gadget.images.each do |owned_gadget_photo| %>
+            <%= owned_gadget_photo %>
+          <% end %>
+        <% end %>
         <span id="photos" class="anchorjs-link text-muted display-6">
           photos
           <a href="#photos"></a>

@@ -2,9 +2,9 @@
   <div class="navbar navbar-expand-lg fixed-top border-bottom shadow-sm">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-      <h5 class="d-flex align-items-center mb-2 mb-lg-0 me-5">
-        <%= link_to 'Devise Bootstrap', root_path, class: 'bi ms-5 me-2 text-dark text-decoration-none' %>
-      </h5>
+      <h3 class="d-flex align-items-center mb-2 mb-lg-0 me-5">
+        <%= link_to 'iLab', root_path, class: 'bi ms-5 me-2 text-dark text-decoration-none' %>
+      </h3>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 
@@ -56,11 +56,17 @@
 
           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1" style="">
 
-            <li><%= link_to 'Profile',     account_path(current_user.username), class: "dropdown-item px-5" %></li>
-            <li><%= link_to 'Posts',       posts_path,                          class: 'dropdown-item px-5' %></li>
-            <li><%= link_to 'New Post',    new_post_path,                       class: 'dropdown-item px-5' %></li>
-            <li><%= link_to 'Articles',    articles_path,                       class: 'dropdown-item px-5' %></li>
-            <li><%= link_to 'New article', new_article_path,                    class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'Profile',       account_path(current_user.username), class: "dropdown-item px-5" %></li>
+            <li><%= link_to 'Owned gadgets', owned_gadgets_path,                  class: "dropdown-item px-5" %></li>
+            <li><%= link_to 'MakBooks',      makbooks_path,                       class: "dropdown-item px-5" %></li>
+            <li><%= link_to 'iMacs',         imacs_path,                          class: "dropdown-item px-5" %></li>
+            <li><%= link_to 'iPads',         ipads_path,                          class: "dropdown-item px-5" %></li>
+            <li><%= link_to 'AirPods',       airpods_path,                        class: "dropdown-item px-5" %></li>
+            <li><%= link_to 'Apple Watches', apple_watches_path,                  class: "dropdown-item px-5" %></li>
+            <li><%= link_to 'Posts',         posts_path,                          class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'Articles',      articles_path,                       class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'New Post',      new_post_path,                       class: 'dropdown-item px-5' %></li>
+            <li><%= link_to 'New article',   new_article_path,                    class: 'dropdown-item px-5' %></li>
 
             <% @universities.each do |university| %>
               <li>

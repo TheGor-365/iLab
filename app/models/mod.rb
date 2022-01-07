@@ -7,6 +7,9 @@ class Mod < ApplicationRecord
   belongs_to :generation
   belongs_to :phone
   belongs_to :model
+  
+  has_and_belongs_to_many :defects
+  has_and_belongs_to_many :repairs
 
   has_many :spare_parts
 

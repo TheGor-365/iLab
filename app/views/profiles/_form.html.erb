@@ -37,27 +37,93 @@
   <div class="row p-5 shadow bg-white mb-5">
     <%= form.label :owned_gadgets, class: 'mb-5' %>
 
-    <%#= form.collection_check_boxes :user_ids, Phone.all, :id, :model_title %>
-    <%= form.submit class: 'btn btn-success btn-sm' %>
-  </div>
+    <div class="row p-5 shadow bg-white mb-5">
+      <small>
+        <%= form.label :phones, class: 'mb-5 display-6 text-muted' %>
+      </small>
 
-  <div class="row p-5 shadow bg-white mb-5">
-    <%= form.label :owned_gadgets, class: 'mb-5' %>
+      <div class="btn-group-vertical d-block">
+        <%= form.collection_check_boxes :phone_ids, Phone.all, :id, :model_title do |b| %>
+          <span>
+            <%= b.check_box class: 'btn-check' %>
+            <%= b.label     class: 'btn btn-outline-primary d-block' %>
+          </span>
+        <% end %>
+      </div>
+    </div>
 
-    <div class="col-5">
-      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+    <div class="row p-5 shadow bg-white mb-5">
+      <small>
+        <%= form.label :makbooks, class: 'mb-5 display-6 text-muted' %>
+      </small>
 
-        <input type="checkbox" class="btn-check" id="owned_gadgets_1" autocomplete="off">
-        <label class="btn btn-outline-primary" for="owned_gadgets_1">Owned gadget 1</label>
+      <div class="btn-group-vertical d-block">
+        <%= form.collection_check_boxes :makbook_ids, Makbook.all, :id, :full_title do |b| %>
+          <span>
+            <%= b.check_box class: 'btn-check' %>
+            <%= b.label     class: 'btn btn-outline-primary d-block' %>
+          </span>
+        <% end %>
+      </div>
+    </div>
 
-        <input type="checkbox" class="btn-check" id="owned_gadgets_2" autocomplete="off">
-        <label class="btn btn-outline-primary" for="owned_gadgets_2">Owned gadget 2</label><br>
+    <div class="row p-5 shadow bg-white mb-5">
+      <small>
+        <%= form.label :imacs, class: 'mb-5 display-6 text-muted' %>
+      </small>
 
-        <input type="checkbox" class="btn-check" id="owned_gadgets_3" autocomplete="off">
-        <label class="btn btn-outline-primary" for="owned_gadgets_3">Owned gadget 3</label>
+      <div class="btn-group-vertical d-block">
+        <%= form.collection_check_boxes :imac_ids, Imac.all, :id, :full_title do |b| %>
+          <span>
+            <%= b.check_box class: 'btn-check' %>
+            <%= b.label     class: 'btn btn-outline-primary d-block' %>
+          </span>
+        <% end %>
+      </div>
+    </div>
 
-        <input type="checkbox" class="btn-check" id="owned_gadgets_4" autocomplete="off">
-        <label class="btn btn-outline-primary" for="owned_gadgets_4">Owned gadget 4</label><br>
+    <div class="row p-5 shadow bg-white mb-5">
+      <small>
+        <%= form.label :ipads, class: 'mb-5 display-6 text-muted' %>
+      </small>
+
+      <div class="btn-group-vertical d-block">
+        <%= form.collection_check_boxes :ipad_ids, Ipad.all, :id, :full_title do |b| %>
+          <span>
+            <%= b.check_box class: 'btn-check' %>
+            <%= b.label     class: 'btn btn-outline-primary d-block' %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row p-5 shadow bg-white mb-5">
+      <small>
+        <%= form.label :airpods, class: 'mb-5 display-6 text-muted' %>
+      </small>
+
+      <div class="btn-group-vertical d-block">
+        <%= form.collection_check_boxes :airpod_ids, Airpod.all, :id, :full_title do |b| %>
+          <span>
+            <%= b.check_box class: 'btn-check' %>
+            <%= b.label     class: 'btn btn-outline-primary d-block' %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row p-5 shadow bg-white mb-5">
+      <small>
+        <%= form.label :apple_watches, class: 'mb-5 display-6 text-muted' %>
+      </small>
+
+      <div class="btn-group-vertical d-block">
+        <%= form.collection_check_boxes :apple_watch_ids, AppleWatch.all, :id, :full_title do |b| %>
+          <span>
+            <%= b.check_box class: 'btn-check' %>
+            <%= b.label     class: 'btn btn-outline-primary d-block' %>
+          </span>
+        <% end %>
       </div>
     </div>
   </div>

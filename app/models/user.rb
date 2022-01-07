@@ -13,7 +13,13 @@ class User < ApplicationRecord
   has_many :articles
   has_many :answers
   has_many :owned_gadgets
-  has_many :phones, through: :owned_gadgets
+
+  has_and_belongs_to_many :phones
+  has_and_belongs_to_many :makbooks
+  has_and_belongs_to_many :imacs
+  has_and_belongs_to_many :ipads
+  has_and_belongs_to_many :airpods
+  has_and_belongs_to_many :apple_watches
 
   has_one :profile
 
@@ -21,6 +27,17 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def all_gadgets
+    gadgets = []
+    gadgets << phones
+    gadgets << makbooks
+    gadgets << imacs
+    gadgets << ipads
+    gadgets << airpods
+    gadgets << apple_watches
+    gadgets.each { |gadget| gadget }
   end
 
   def login

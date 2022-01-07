@@ -15,8 +15,9 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.update!(user_params)
       @user.save
+
       redirect_to account_path(@user), notice: "User was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -35,7 +36,7 @@ class ProfilesController < ApplicationController
       :username,
       :first_name,
       :last_name,
-      :owned_gadgets,
+      {owned_gadgets: []},
       :borned,
       :repairman,
       :teacher,
@@ -48,7 +49,13 @@ class ProfilesController < ApplicationController
       :remember_me,
       :images_cache,
       { images: [] },
-      { videos: [] }
+      { videos: [] },
+      phone_ids: [],
+      makbook_ids: [],
+      imac_ids: [],
+      ipad_ids: [],
+      airpod_ids: [],
+      apple_watch_ids: []
     )
   end
 end

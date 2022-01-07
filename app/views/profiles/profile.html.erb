@@ -74,6 +74,136 @@
     </div>
 
     <div class="row p-5 shadow bg-white mb-5">
+      <span id="user_owned_gadgets" class="anchorjs-link display-5 mb-4"><%= @user.username %>
+        <span class="text-muted display-5">
+          <strong>owned gadgets</strong>
+        </span>
+      </span>
+
+      <p class="display-6 mt-5 mb-3">Phones</p>
+
+      <% if @user.phones.size == 0 %>
+
+        <div class="row p-5 shadow bg-white mb-5">
+          <p class="display-6 text-muted">
+            No info
+          </p>
+        </div>
+      <% else %>
+
+        <% @user.phones.each do |phone| %>
+          <div class="row p-5 shadow bg-white mb-5">
+            <%= phone.model_title %><br><br>
+            <%= phone.inspect %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <p class="display-6 mt-5 mb-3">MakBooks</p>
+
+      <% if @user.makbooks.size == 0 %>
+
+        <div class="row p-5 shadow bg-white mb-5">
+          <p class="display-6 text-muted">
+            No info
+          </p>
+        </div>
+      <% else %>
+
+        <% @user.makbooks.each do |makbook| %>
+          <div class="row p-5 shadow bg-white mb-5">
+            <%= makbook.title %><br><br>
+            <%= makbook.inspect %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <p class="display-6 mt-5 mb-3">iMacs</p>
+
+      <% if @user.imacs.size == 0 %>
+
+        <div class="row p-5 shadow bg-white mb-5">
+          <p class="display-6 text-muted">
+            No info
+          </p>
+        </div>
+      <% else %>
+
+        <% @user.imacs.each do |imac| %>
+          <div class="row p-5 shadow bg-white mb-5">
+            <%= imac.title %><br><br>
+            <%= imac.inspect %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <p class="display-6 mt-5 mb-3">iPads</p>
+
+      <% if @user.ipads.size == 0 %>
+
+        <div class="row p-5 shadow bg-white mb-5">
+          <p class="display-6 text-muted">
+            No info
+          </p>
+        </div>
+      <% else %>
+
+        <% @user.ipads.each do |ipad| %>
+          <div class="row p-5 shadow bg-white mb-5">
+            <%= ipad.title %><br><br>
+            <%= ipad.inspect %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <p class="display-6 mt-5 mb-3">AirPods</p>
+
+      <% if @user.airpods.size == 0 %>
+
+        <div class="row p-5 shadow bg-white mb-5">
+          <p class="display-6 text-muted">
+            No info
+          </p>
+        </div>
+      <% else %>
+
+        <% @user.airpods.each do |airpod| %>
+          <div class="row p-5 shadow bg-white mb-5">
+            <%= airpod.title %><br><br>
+            <%= airpod.inspect %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <p class="display-6 mt-5 mb-3">Apple Watches</p>
+
+      <% if @user.apple_watches.size == 0 %>
+
+        <div class="row p-5 shadow bg-white mb-5">
+          <p class="display-6 text-muted">
+            No info
+          </p>
+        </div>
+      <% else %>
+
+        <% @user.apple_watches.each do |apple_watch| %>
+          <div class="row p-5 shadow bg-white mb-5">
+            <%= apple_watch.title %><br><br>
+            <%= apple_watch.inspect %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <p class="display-6 mt-5 mb-3">All Gadgets</p>
+
+      <% @user.all_gadgets.each do |gadget| %>
+        <div class="row p-5 shadow bg-white mb-5">
+          <%= gadget.inspect %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="row p-5 shadow bg-white mb-5">
 
       <span id="user_posts" class="anchorjs-link display-5 mb-5"><%= @user.username %>
         <span class="text-muted display-5">
