@@ -1,26 +1,30 @@
+<% provide :page_title, @phone.model_title %>
+<% currently_at @phone.model_title %>
+
 <div class="row">
 
   <div class="col-2">
-    <%= render 'phones_show_nav' %>
+    <%= render 'phone_show_nav' %>
   </div>
 
-  <div class="col-6 m-5">
+  <div class="col-6 m-5 contents">
 
-    <div class="row p-5 shadow bg-white mb-5">
+    <div class="row pt-4 pb-5 shadow bg-white mb-5 text-center header-nav">
       <p class="align-middle">
-        <span id="gadget" class="anchorjs-link display-1"><%= @phone.model_title %>
-          <span class="text-muted display-1">
+        <span id="gadget" class="anchorjs-link display-6 text-muted"><%= @phone.model_title %>
+          <span class="text-muted display-6">
             <strong>show room</strong>
           </span>
         </span>
       </p>
+
+      <i class="fas fa-2x fa-book-open text-muted pt-2"></i>
     </div>
 
-    <div class="row p-5 shadow bg-white">
+    <div id="phone-image" class="row p-5 shadow bg-white">
       <span class="display-6 mb-3"><%= @phone.model_title %>
         <span id="photos" class="anchorjs-link text-muted display-6">
           photos
-          <a href="#photos"></a>
         </span>
       </span>
       <br>
@@ -64,6 +68,6 @@
   </div>
 
   <div class="col-3">
-    <%= render 'phones_info_card' %>
+    <%= render 'phone_info_card' %>
   </div>
 </div>

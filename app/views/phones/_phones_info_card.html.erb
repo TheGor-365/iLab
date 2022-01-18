@@ -1,8 +1,15 @@
-<div class="fixed-right shadow bg-white p-4 pe-3 col-3 m-3 mt-5">
-  <h4 class="text-center">
-    Photo <span class="text-muted"><%= @phone.model_title %></span>
-  </h4>
+<div class="fixed-right nav-scroll shadow bg-white col-3 mx-3 mt-5">
+
+  <div class="show-nav-header shadow bg-white py-4">
+    <h4>
+      <div id='phone-title' class="text-center">
+        <%= @phone.nil? ? (render partial: 'more_info') : (render partial: 'phone_title_show', phone: @phone) %>
+      </div>
+    </h4>
+  </div>
   <br>
 
-  <%= image_tag(@phone.avatar.url, width: '420') if @phone.avatar.present? %>
+  <div id="phone-content" class="text-center text-muted">
+    <%= render partial: 'phones_default_content' if @phone.nil? %>
+  </div>
 </div>

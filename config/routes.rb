@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :apple_watches
-  resources :airpods
-  resources :ipads
-  resources :imacs
-  resources :makbooks
   devise_for :users
 
   root to: 'pages#home'
@@ -85,18 +80,45 @@ Rails.application.routes.draw do
     resources :images, only: [ :create, :destroy ]
   end
 
+  resources :apple_watches do
+    resources :images, only: [ :create, :destroy ]
+  end
+
+  resources :airpods do
+    resources :images, only: [ :create, :destroy ]
+  end
+
+  resources :ipads do
+    resources :images, only: [ :create, :destroy ]
+  end
+
+  resources :imacs do
+    resources :images, only: [ :create, :destroy ]
+  end
+
+  resources :makbooks do
+    resources :images, only: [ :create, :destroy ]
+  end
+
+
   delete 'cart',  to: 'order_items#destroy_all'
   post   'cart',  to: 'order_items#update_all'
-
-  get 'terms',    to: 'pages#terms',    as: 'terms'
-  get 'contacts', to: 'pages#contacts', as: 'contacts'
 
   match 'cart',   to: 'cart#show',      via: [ :get, :post ]
   match 'store',  to: 'pages#store',    via: [ :get, :post ]
 
-  get   'profiles/:username',                to: 'profiles#profile',        as: 'account'
-  get   'profiles/:username/edit_profile',   to: 'profiles#edit_profile',   as: 'edit_account'
+
+  get 'terms',    to: 'pages#terms',    as: 'terms'
+  get 'contacts', to: 'pages#contacts', as: 'contacts'
+
+  get   'profiles/:username',                to: 'profiles#profile',          as: 'account'
+  get   'profiles/:username/edit_profile',   to: 'profiles#edit_profile',     as: 'edit_account'
   patch 'profiles/:username',                to: 'profiles#update'
 
-  get   'video_recordings',                  to: 'video_recordings#new',    as: 'video_recordings'
+  get 'phones/phone_title/:id',              to: 'phones#phone_title',        as: 'phone_title'
+  get 'phones/phone_image/:id',              to: 'phones#phone_image',        as: 'phone_photo'
+  get 'phones/phone_video/:id',              to: 'phones#phone_video',        as: 'phone_video'
+  get 'phones/phone_overview/:id',           to: 'phones#phone_overview',     as: 'phone_overview'
+
+  get 'video_recordings',                    to: 'video_recordings#new',      as: 'video_recordings'
 end
