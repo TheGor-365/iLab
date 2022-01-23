@@ -60,7 +60,7 @@ module ApplicationHelper
 
     current_page = options.delete :current_page
 
-    css_class = current_page == title ? 'text-secondary bg-light' : 'text-dark'
+    css_class = current_page == title ? 'text-white bg-dark rounded' : 'text-dark'
 
     options[:class] = if options[:class]
       options[:class] + ' ' + css_class

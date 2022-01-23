@@ -16,7 +16,7 @@
         </p>
       </div>
 
-      <table class="table table-borderless shadow p-5">
+      <table class="table table-borderless shadow p-5 bg-white">
 
         <thead class="shadow mb-5">
           <tr>
@@ -30,9 +30,9 @@
 
         <% @phones.each_with_index do |phone, index| %>
 
-          <tbody class="shadow pb-5 my-5">
+          <tbody class="shadow-sm pb-5 my-5">
             <tr>
-              <td class="py-5 px-3 shadow text-center title">
+              <td class="py-5 px-3 shadow-sm text-center title">
                 <span class="title anchorjs-link">
                   <small class="h5 text-muted">
                     <%= link_to phone_title_path(phone), remote: true, class: 'text-decoration-none text-muted' do %>
@@ -42,7 +42,7 @@
                 </span>
               </td>
 
-              <td class="py-5 shadow text-center">
+              <td class="py-5 shadow-sm text-center">
                 <%= link_to phone_photo_path(phone), remote: true, class: 'text-decoration-none text-muted' do %>
                   <span class="images">
                     <% phone.images.each do |image| %>
@@ -52,7 +52,7 @@
                 <% end %>
               </td>
 
-              <td class="py-5 shadow text-center">
+              <td class="py-5 shadow-sm text-center">
                 <%= link_to phone_video_path(phone), remote: true, class: 'text-decoration-none text-muted' do %>
                   <span class="videos">
                     <% phone.videos.each do |video| %>
@@ -62,7 +62,7 @@
                 <% end %>
               </td>
 
-              <td id="<%= phone.model_title %>" class="py-5 px-3 shadow overview">
+              <td id="<%= phone.model_title %>" class="py-5 px-3 shadow-sm overview">
                 <%= link_to phone_overview_path(phone), remote: true, class: 'text-decoration-none text-muted' do %>
                   <small class="text-muted">
                     <%= phone.model_overview %>
@@ -70,7 +70,7 @@
                 <% end %>
               </td>
 
-              <td class="py-5 px-4 shadow">
+              <td class="py-5 px-4 shadow-sm">
                 <small>
                   <div class="btn-group-vertical controls">
                     <%= link_to 'Show', phone, class: 'btn btn-sm btn-secondary' %>
